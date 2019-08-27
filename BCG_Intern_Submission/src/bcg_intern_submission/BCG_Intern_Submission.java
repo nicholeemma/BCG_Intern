@@ -15,7 +15,7 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 /**
- *
+ * Reference: https://www.mkyong.com/java/how-to-send-http-request-getpost-in-java/
  * @author nichole
  */
 public class BCG_Intern_Submission {
@@ -35,16 +35,18 @@ public class BCG_Intern_Submission {
 		System.out.println("\nSend Http POST request");
 		http.sendPost();
     }
+    /* Send HTTP Get request to specified URL*/
     private void sendGet() throws Exception {
 
 		String url = "https://interns.bcgdvsydney.com/api/v1/key";
 		
 		URL obj = new URL(url);
+                // Get the object of connection
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-		// optional default is GET
+		// Get request
 		con.setRequestMethod("GET");
-
+                // Get the status code from a HTTP response message
 		int responseCode = con.getResponseCode();
 		System.out.println("\nSending 'GET' request to URL : " + url);
 		System.out.println("Response Code : " + responseCode);
@@ -78,11 +80,10 @@ public class BCG_Intern_Submission {
 		URL obj = new URL(url);
 		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
-		//add reuqest header
+		//Post request
 		con.setRequestMethod("POST");
-		
-		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-                con.setDoOutput(true);
+		//A URL connection can be used for input and/or output. Setting the doOutput flag to true indicates that the application intends to write data to the URL connection
+		con.setDoOutput(true);
 
                 //json format
                 byte[] out = "{\"name\":\"Jiayue Yang\",\"email\":\"jiayueya@andrew.cmu.edu\"}" .getBytes(StandardCharsets.UTF_8);
@@ -97,6 +98,7 @@ public class BCG_Intern_Submission {
 		
 
 		int responseCode = con.getResponseCode();
+                
 		System.out.println("\nSending 'POST' request to URL : " + url);
 	
 		System.out.println("Response Code : " + responseCode);
